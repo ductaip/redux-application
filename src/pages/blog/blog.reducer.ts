@@ -13,7 +13,11 @@ const initialState: BlogState = {
 export const addPost = createAction<Post>('blog/addPost')
 
 const blogReducer = createReducer(initialState, (builder) => {
-
+    builder.addCase(addPost, (state, action) => {
+        //mutate truc tiep bang immerjs *thuc chat la tao ra ban sao
+        const post = action.payload
+        state.postList.push(post)
+    })
 })
 
 export default blogReducer
