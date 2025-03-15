@@ -1,6 +1,6 @@
 import { initialPostList } from "@/constants/blog";
 import { Post } from "@/types/blog.type";
-import { createReducer } from "@reduxjs/toolkit";
+import { createAction, createReducer } from "@reduxjs/toolkit";
 
 interface BlogState {
     postList: Post[]
@@ -10,7 +10,8 @@ const initialState: BlogState = {
     postList: initialPostList
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const addPost = createAction<Post>('blog/addPost')
+
 const blogReducer = createReducer(initialState, (builder) => {
 
 })
