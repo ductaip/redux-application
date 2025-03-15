@@ -1,10 +1,15 @@
 import { RootState } from '@/store'
 import PostItem from '../PostItem'
 import { useSelector } from 'react-redux'
+import { useDispatch } from "react-redux";
+import { deletePost } from '@/pages/blog/blog.reducer';
 
 export default function PostList() {
+  const dispatch = useDispatch()
+
   const postList = useSelector((state: RootState) => state.blog.postList)
-  console.log('.>>>', postList)
+  //PostItem o tang nho nen truyen function tu parent compo vao
+  const handleDelete = (postId: string) => dispatch(deletePost(postId))
   return (
     <div>
         <div className="bg-white py-6 sm:py-8 lg:py-12">
@@ -20,7 +25,7 @@ export default function PostList() {
             </div>
             <div className="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-2 xl:grid-cols-2 xl:gap-8">
               {postList.map((post) => (
-                <PostItem key={post.id} post={post} />
+                <PostItem key={post.id} post={post} handleDelete={handleDelete} />
               ))}
             </div>
           </div>
